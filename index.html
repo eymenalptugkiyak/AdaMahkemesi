@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ada Mahkemesi | Rüşvet Sistemi</title>
+    <!-- Tailwind CSS (Tasarım kütüphanesi) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome İkonları (Görsel ikonlar) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts (Yazı tipleri) -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background-color: #0f172a;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.1) 0px, transparent 50%), 
+                radial-gradient(at 100% 100%, rgba(245, 158, 11, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* Kaydırma Çubuğu */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .input-focus-effect:focus-within {
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+            border-color: #10b981;
+        }
+
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen p-4 md:p-8 flex flex-col items-center">
+
+    <!-- Header -->
+    <header class="w-full max-w-6xl flex items-center justify-between mb-8 pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                <i class="fa-solid fa-scale-balanced text-slate-900 text-xl"></i>
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold tracking-tight text-white">Ada Mahkemesi</h1>
+                <p class="text-xs text-slate-400 font-light tracking-wider uppercase">Rüşvet Sistemi V1.0</p>
+            </div>
+        </div>
+        <div class="hidden md:block text-right">
+            <span class="text-xs px-3 py-1 rounded-full bg-slate-800 text-slate-400 border border-slate-700">
+                <i class="fa-solid fa-lock text-[10px] mr-1"></i> Güvenli Hesaplama
+            </span>
+        </div>
+    </header>
+
+    <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- GİRDİLER -->
+        <div class="lg:col-span-5 space-y-6">
+            
+            <!-- SLOGAN KUTUSU  -->
+            <div class="glass-panel p-6 rounded-2xl border-l-4 border-emerald-500 bg-gradient-to-r from-emerald-900/20 to-transparent relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-3 opacity-10">
+                    <i class="fa-solid fa-quote-right text-4xl text-emerald-400"></i>
+                </div>
+                <div class="relative z-10 flex gap-4">
+                    <div class="mt-1">
+                        <i class="fa-solid fa-lightbulb text-emerald-400 text-lg animate-pulse"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-emerald-100/90 font-medium italic leading-relaxed">
+                            "Haksız yere suçlandıysanız sizi bu suçlamalardan en ucuz şekilde kurtaracak yolu sizin için bulan bu sistem tam sizlik."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bilgilendirme ve Dava Verileri -->
+            <div class="glass-panel p-6 rounded-2xl">
+                <h2 class="text-lg font-semibold text-emerald-400 mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square"></i> Dava Verileri
+                </h2>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                    Mahkeme günü açıklanan jüri verilerini ve hakimlerin talep ettiği rüşvet bedellerini aşağıya giriniz.
+                </p>
+            </div>
+
+            <!-- Jüri  -->
+            <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-indigo-500 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <i class="fa-solid fa-users text-8xl text-indigo-400"></i>
+                </div>
+                
+                <h3 class="text-sm font-bold text-indigo-300 uppercase tracking-wider mb-4">Mahkeme Günü Verileri</h3>
+                
+                <div class="grid grid-cols-2 gap-4 relative z-10">
+                    <div class="group/input">
+                        <label class="block text-xs font-medium text-slate-400 mb-1.5 ml-1">Jüri Sayısı (N)</label>
+                        <div class="relative input-focus-effect bg-slate-900/50 rounded-xl border border-slate-700 transition-colors">
+                            <i class="fa-solid fa-users absolute left-3 top-3 text-slate-500"></i>
+                            <input type="number" id="juryCount" class="w-full bg-transparent p-2.5 pl-9 text-white outline-none font-semibold" placeholder="12">
+                        </div>
+                        <!-- SALT ÇOĞUNLUK BİLGİSİ -->
+                        <p id="juryMajorityHelp" class="hidden text-[10px] text-emerald-400/80 mt-1.5 ml-1 font-medium animate-pulse">
+                        </p>
+                    </div>
+                    <div class="group/input">
+                        <label class="block text-xs font-medium text-slate-400 mb-1.5 ml-1">Jüri Başı Maliyet</label>
+                        <div class="relative input-focus-effect bg-slate-900/50 rounded-xl border border-slate-700 transition-colors">
+                            <i class="fa-solid fa-euro-sign absolute left-3 top-3 text-slate-500"></i>
+                            <input type="number" id="juryCost" class="w-full bg-transparent p-2.5 pl-9 text-white outline-none font-semibold" placeholder="5000">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hakim Listesi -->
+            <div class="glass-panel rounded-2xl p-1 overflow-hidden">
+                <div class="bg-slate-800/50 p-3 border-b border-slate-700/50 flex justify-between items-center">
+                    <span class="text-sm font-bold text-slate-300 ml-2">Hakim Listesi & Talepler</span>
+                    <span class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded">5 Hakim</span>
+                </div>
+                
+                <div id="judgesContainer" class="max-h-[400px] overflow-y-auto p-4 space-y-3 custom-scrollbar">
+                
+                </div>
+            </div>
+
+            <!-- Hesapla Butonu -->
+            <button id="calculateBtn" class="group w-full relative overflow-hidden bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold py-4 px-6 rounded-2xl shadow-xl shadow-emerald-900/20 transform transition-all active:scale-[0.98]">
+                <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                <span class="relative flex items-center justify-center gap-3 text-lg">
+                    <i class="fa-solid fa-calculator group-hover:rotate-12 transition-transform"></i>
+                    En Ucuz Yolu Hesapla
+                </span>
+            </button>
+        </div>
+
+        <!-- SONUÇLAR -->
+        <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Boş Durum -->
+            <div id="emptyState" class="glass-panel rounded-2xl p-12 text-center border-dashed border-2 border-slate-700 h-full flex flex-col items-center justify-center min-h-[400px]">
+                <div class="w-20 h-20 bg-slate-800 rounded-full flex items-center justify-center mb-6 animate-pulse">
+                    <i class="fa-solid fa-magnifying-glass-chart text-3xl text-slate-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-300 mb-2">Henüz Analiz Yapılmadı</h3>
+                <p class="text-slate-500 max-w-xs mx-auto">Hakim ve jüri verilerini girdikten sonra hesapla butonuna basınız.</p>
+            </div>
+
+            <!-- SONUÇ İÇERİĞİ -->
+            <div id="resultsContainer" class="hidden space-y-6 animate-fade-in">
+                
+                <!-- EN UCUZ YOL -->
+                <div class="relative bg-gradient-to-br from-emerald-900 to-slate-900 rounded-2xl p-8 border border-emerald-500/30 shadow-2xl shadow-emerald-900/50 overflow-hidden">
+                    <!-- Arkaplan -->
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
+                    <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl"></div>
+                    
+                    <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="bg-emerald-500 text-slate-900 text-xs font-bold px-2 py-0.5 rounded shadow shadow-emerald-500/50">ÖNERİLEN STRATEJİ</span>
+                                <span class="text-emerald-400 text-xs"><i class="fa-solid fa-check-circle"></i> En Düşük Maliyet</span>
+                            </div>
+                            <h2 id="bestPriceDisplay" class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-2">€0.00</h2>
+                            <p id="bestMethodDisplay" class="text-lg font-medium text-emerald-100/90"></p>
+                        </div>
+                        
+                        <div class="bg-slate-900/40 backdrop-blur-sm p-4 rounded-xl border border-white/10 max-w-xs">
+                            <p id="bestDetailDisplay" class="text-sm text-slate-300 leading-snug"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detaylı Tablo -->
+                <div class="glass-panel rounded-2xl overflow-hidden shadow-lg">
+                    <div class="p-5 border-b border-slate-700/50 flex justify-between items-center bg-slate-800/30">
+                        <h3 class="font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-list-ol text-slate-400"></i> Tüm Olasılıklar
+                        </h3>
+                        <span class="text-xs text-slate-500">Ucuzdan Pahalıya</span>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="text-xs text-slate-400 border-b border-slate-700/50 bg-slate-800/20 uppercase tracking-wider">
+                                    <th class="p-4 font-medium">Sıra</th>
+                                    <th class="p-4 font-medium">Strateji</th>
+                                    <th class="p-4 font-medium">Hakim</th>
+                                    <th class="p-4 font-medium hidden sm:table-cell">Açıklama</th>
+                                    <th class="p-4 font-medium text-right">Tutar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsTableBody" class="text-sm">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
